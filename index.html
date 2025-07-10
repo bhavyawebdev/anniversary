@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Anniversary Purvi ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&family=EB+Garamond&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: radial-gradient(circle at top left, #ffe6f0, #e0c3fc);
+      overflow-x: hidden;
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #6b0f1a;
+      position: relative;
+      z-index: 1; /* Ensure content is above the hearts */
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #d63384;
+      animation: pulseGlow 2s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        text-shadow: 0 0 10px #ff8ecf, 0 0 20px #ffc1dd;
+        transform: scale(1);
+      }
+      100% {
+        text-shadow: 0 0 20px #ff4fa2, 0 0 40px #ffa6c9;
+        transform: scale(1.05);
+      }
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .nav-buttons button {
+      background: linear-gradient(90deg, #ff80ab, #ff4081);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 90%;
+      max-width: 300px;
+      box-shadow: 0 0 10px rgba(255, 0, 102, 0.3);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .nav-buttons button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #ff4081, #ff80ab);
+    }
+
+    /* Popup Styles */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup.active {
+      display: flex;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .popup-content {
+      background: #fff0f5;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+      max-width: 500px;
+      text-align: center;
+      animation: bounceIn 0.6s ease-out;
+      font-family: 'EB Garamond', serif;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.6); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2.4rem;
+      }
+      .nav-buttons button {
+        font-size: 1rem;
+      }
+    }
+
+    /* Flying Hearts */
+    .heart {
+      position: absolute;
+      top: 100%;
+      width: 20px;
+      height: 20px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Heart_icon_red.svg/1024px-Heart_icon_red.svg.png') no-repeat center center;
+      background-size: contain;
+      animation: fly 10s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fly {
+      0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(100vw) translateY(-100vh);
+        opacity: 0;
+      }
+    }
+
+    /* Photo Frame Styles */
+    .photo-frame {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .photo-frame img {
+      width: 150px;
+      height: 500px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Quotes Section */
+    .quotes {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #d63384;
+    }
+
+    /* Love Quotes Popup */
+    .love-quotes {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .love-quotes.active {
+      display: flex;
+    }
+
+    .love-quotes-content {
+      background: #fff0f5;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+      max-width: 500px;
+      text-align: left;
+      animation: bounceIn 0.6s ease-out;
+      font-family: 'EB Garamond', serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Happy Anniversary Purvi 💖</h1>
+
+    <div class="nav-buttons">
+      <button onclick="togglePopup('letterPopup')">💌 Love Letter</button>
+      <button onclick="togglePopup('futureDreamsPopup')">🌌 Future Dreams</button>
+      <button onclick="togglePopup('giftPopup')">🎁 Surprise Gift</button>
+      <button onclick="togglePopup('marryMePopup')">💍 Will You Marry Me?</button>
+      <button onclick="togglePopup('memoriesPopup')">📸 Beautiful Memories</button>
+      <button onclick="toggleLoveQuotes()">💖 Lovable Quotes</button>
+    </div>
+
+    <!-- LOVE LETTER Popup -->
+    <div id="letterPopup" class="popup">
+      <div class="popup-content">
+        <h2>💌 Love Letter</h2>
+        <p>The first time I saw you with my eyes on the rickshaw, my heart fell into your pretty eyes. And the first time I gathered the guts to propose to you—little did I know, it would be the beginning of the most beautiful chapter of my life. It's almost a year now, and our relationship has bloomed through chaos, love, fights, and tears.</p>
+        <p>You stayed. You stood by me when I couldn't even stand myself. And from now onwards, I don’t just see you as my girlfriend—I see you as my wife, my love, my heartbeat.</p>
+        <p>You didn’t just enter my life, Purvi—you became it. Every hug from you heals me. Every call from you lifts me. You're not just in my heart, baby, you're the <em>rhythm</em> of it.</p>
+        <p>On this special day, I promise again—no matter what life throws at us, I’ll be yours. In every fight, I’ll choose love. In every storm, I’ll choose you.</p>
+        <div class="signature">With all the love I have,<br>Mihir 💖</div>
+        <button onclick="closePopup('letterPopup')">Close</button>
+      </div>
+    </div>
+
+    <!-- FUTURE DREAMS Popup -->
+    <div id="futureDreamsPopup" class="popup">
+      <div class="popup-content">
+        <h2>🌌 Our Future Dreams</h2>
+        <p>Traveling the world hand in hand, exploring every corner of this beautiful planet together. Building a cozy home filled with laughter, love, and the sweet scent of your favorite flowers. Waking up every morning to your sleepy face, and falling asleep every night knowing that I have you by my side.</p>
+        <p>Imagine us dancing in the kitchen, cooking our favorite meals, and sharing stories over candlelit dinners. I dream of lazy Sundays spent cuddling on the couch, watching our favorite movies, and making memories that will last a lifetime.</p>
+        <p>That’s the forever I see with you, Purvi. A life where every moment is cherished, and every day is a new adventure. Together, we can conquer the world, one dream at a time.</p>
+        <button onclick="closePopup('futureDreamsPopup')">Close</button>
+      </div>
+    </div>
+
+    <!-- MARRY ME Popup -->
+    <div id="marryMePopup" class="popup">
+      <div class="popup-content">
+        <h2>💍 Will You Marry Me?</h2>
+        <p>On this anniversary, I ask you again—not just for another year together, but for forever. Will you be mine, Purvi? Forever and always? 💖</p>
+        <p>With you, I have found my home, my heart, and my happiness. I want to build a life with you, filled with love, laughter, and endless adventures. You are my dream come true, and I can't imagine a future without you by my side.</p>
+        <p>So, will you take my hand and walk with me into this beautiful journey of life? Will you be my partner, my confidant, and my forever love? 💞</p>
+        <button onclick="closePopup('marryMePopup')">Close</button>
+      </div>
+    </div>
+
+    <!-- 🎁 Gift Surprise Popup -->
+    <div id="giftPopup" class="popup">
+      <div class="popup-content">
+        <h2>💝 A Gift of Forever 💝</h2>
+        <p>To the girl who changed my world with just a smile—</p>
+        <p>This isn't just a gift... it's a promise of laughter, love, and lifetime cuddles 💖</p>
+        <p>You’re the most precious part of my life, Purvi 🌹. This gift symbolizes my commitment to you, a token of my love that will never fade. Every time you see it, remember that you are cherished beyond words, and my love for you grows stronger every day.</p>
+        <p>May this gift remind you of all the beautiful moments we've shared and all the adventures that await us. Together, we will create a lifetime of memories, filled with joy and love.</p>
+        <button onclick="closePopup('giftPopup')">Close</button>
+      </div>
+    </div>
+
+    <!-- Beautiful Memories Popup -->
+    <div id="memoriesPopup" class="popup">
+      <div class="popup-content">
+        <h2>📸 Our Beautiful Memories</h2>
+        <div class="photo-frame">
+          <img src="photo1.jpeg" alt="Memory 1">
+          <img src="photo2.jpeg" alt="Memory 2">
+          <img src="photo3.jpeg" alt="Memory 3">
+          <img src="photo4.jpeg" alt="Memory 4">
+          <img src="photo5.jpeg" alt="Memory 5">
+        </div>
+        <button onclick="closePopup('memoriesPopup')">Close</button>
+      </div>
+    </div>
+
+    <!-- Love Quotes Popup -->
+    <div id="loveQuotesPopup" class="love-quotes">
+      <div class="love-quotes-content">
+        <h2>💖 Lovable Quotes</h2>
+        <ul>
+          <li>"You are my today and all of my tomorrows." - Leo Christopher</li>
+          <li>"I love you not only for what you are, but for what I am when I am with you." - Roy Croft</li>
+          <li>"In all the world, there is no heart for me like yours." - Maya Angelou</li>
+          <li>"You are the piece of me I didn’t know was missing." - Ed Sheeran</li>
+          <li>"I have found the one whom my soul loves." - Song of Solomon 3:4</li>
+          <li>"You make my heart smile." - Unknown</li>
+          <li>"I could start a fire with what I feel for you." - Unknown</li>
+          <li>"You are my favorite notification." - Unknown</li>
+          <li>"Every love story is beautiful, but ours is my favorite." - Unknown</li>
+          <li>"You are the peanut butter to my jelly." - Unknown</li>
+          <li>"I love you to the moon and back." - Unknown</li>
+          <li>"You are the reason I look down at my phone and smile." - Unknown</li>
+          <li>"You are my sun, my moon, and all my stars." - E.E. Cummings</li>
+          <li>"I fell in love with you because of the million things you never knew you were doing." - Unknown</li>
+          <li>"You are the love of my life and my best friend." - Unknown</li>
+          <li>"I love you more than yesterday, but less than tomorrow." - Unknown</li>
+          <li>"You are my heart, my life, my one and only thought." - Arthur Rimbaud</li>
+          <li>"You are the reason I wake up every morning." - Unknown</li>
+          <li>"I love you more than I have ever found a way to say to you." - Ben Folds</li>
+          <li>"You are my greatest adventure." - Unknown</li>
+          <li>"I love you, not only for what you are but for what I am when I am with you." - Elizabeth Barrett Browning</li>
+          <li>"You are my forever and always." - Unknown</li>
+          <li>"Together is a wonderful place to be." - Unknown</li>
+          <li>"You are the best thing that’s ever been mine." - Taylor Swift</li>
+        </ul>
+        <button onclick="closeLoveQuotes()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flying Hearts -->
+  <script>
+    const quotes = [
+      "You are my today and all of my tomorrows. - Leo Christopher",
+      "I love you not only for what you are, but for what I am when I am with you. - Roy Croft",
+      "In all the world, there is no heart for me like yours. - Maya Angelou",
+      "You are the piece of me I didn’t know was missing. - Ed Sheeran",
+      "I have found the one whom my soul loves. - Song of Solomon 3:4"
+    ];
+
+    let currentQuoteIndex = 0;
+
+    function changeQuote() {
+      currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+      document.getElementById('quoteDisplay').innerText = quotes[currentQuoteIndex];
+    }
+
+    setInterval(changeQuote, 5000); // Change quote every 5 seconds
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+      heart.style.animationDuration = Math.random() * 5 + 5 + 's'; // Random duration between 5s and 10s
+      document.body.appendChild(heart);
+
+      // Remove heart after animation ends
+      heart.addEventListener('animationend', () => {
+        heart.remove();
+      });
+    }
+
+    // Create hearts at intervals
+    setInterval(createHeart, 500); // Create a new heart every 500ms
+
+    function togglePopup(popupId) {
+      const popup = document.getElementById(popupId);
+      popup.classList.add('active');
+    }
+
+    function closePopup(popupId) {
+      const popup = document.getElementById(popupId);
+      popup.classList.remove('active');
+    }
+
+    function toggleLoveQuotes() {
+      const loveQuotesPopup = document.getElementById('loveQuotesPopup');
+      loveQuotesPopup.classList.add('active');
+    }
+
+    function closeLoveQuotes() {
+      const loveQuotesPopup = document.getElementById('loveQuotesPopup');
+      loveQuotesPopup.classList.remove('active');
+    }
+  </script>
+</body>
+</html>
