@@ -151,7 +151,7 @@
 
     .photo-frame img {
       width: 150px;
-      height: 500px;
+      height: 150px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
@@ -272,30 +272,30 @@
       <div class="love-quotes-content">
         <h2>💖 Lovable Quotes</h2>
         <ul>
-          <li>"You are my today and all of my tomorrows." - Mihir</li>
-          <li>"I love you not only for what you are, but for what I am when I am with you." -Mihir</li>
-          <li>"In all the world, there is no heart for me like yours." - Mihir</li>
-          <li>"You are the piece of me I didn’t know was missing." - Mihir</li>
-          <li>"I have found the one whom my soul loves." - Mihir</li>
-          <li>"You make my heart smile." - Mihir</li>
-          <li>"I could start a fire with what I feel for you." - Mihir</li>
-          <li>"You are my favorite notification." - Mihir</li>
-          <li>"Every love story is beautiful, but ours is my favorite." - Mihir</li>
-          <li>"You are the peanut butter to my jelly." - Mihir</li>
-          <li>"I love you to the moon and back." - Mihir</li>
-          <li>"You are the reason I look down at my phone and smile." - Mihir</li>
-          <li>"You are my sun, my moon, and all my stars." - Mihir</li>
-          <li>"I fell in love with you because of the million things you never knew you were doing." - Mihir</li>
-          <li>"You are the love of my life and my best friend." - Mihir</li>
-          <li>"I love you more than yesterday, but less than tomorrow." - Mihir</li>
-          <li>"You are my heart, my life, my one and only thought." - Mihir</li>
-          <li>"You are the reason I wake up every morning." - Mihir</li>
-          <li>"I love you more than I have ever found a way to say to you." - Mihir</li>
-          <li>"You are my greatest adventure." - Mihir</li>
-          <li>"I love you, not only for what you are but for what I am when I am with you." -Mihir</li>
-          <li>"You are my forever and always." - Mihir</li>
-          <li>"Together is a wonderful place to be." - Mihir</li>
-          <li>"You are the best thing that’s ever been mine." -Mihir</li>
+          <li>"You are my today and all of my tomorrows." - Leo Christopher</li>
+          <li>"I love you not only for what you are, but for what I am when I am with you." - Roy Croft</li>
+          <li>"In all the world, there is no heart for me like yours." - Maya Angelou</li>
+          <li>"You are the piece of me I didn’t know was missing." - Ed Sheeran</li>
+          <li>"I have found the one whom my soul loves." - Song of Solomon 3:4</li>
+          <li>"You make my heart smile." - Unknown</li>
+          <li>"I could start a fire with what I feel for you." - Unknown</li>
+          <li>"You are my favorite notification." - Unknown</li>
+          <li>"Every love story is beautiful, but ours is my favorite." - Unknown</li>
+          <li>"You are the peanut butter to my jelly." - Unknown</li>
+          <li>"I love you to the moon and back." - Unknown</li>
+          <li>"You are the reason I look down at my phone and smile." - Unknown</li>
+          <li>"You are my sun, my moon, and all my stars." - E.E. Cummings</li>
+          <li>"I fell in love with you because of the million things you never knew you were doing." - Unknown</li>
+          <li>"You are the love of my life and my best friend." - Unknown</li>
+          <li>"I love you more than yesterday, but less than tomorrow." - Unknown</li>
+          <li>"You are my heart, my life, my one and only thought." - Arthur Rimbaud</li>
+          <li>"You are the reason I wake up every morning." - Unknown</li>
+          <li>"I love you more than I have ever found a way to say to you." - Ben Folds</li>
+          <li>"You are my greatest adventure." - Unknown</li>
+          <li>"I love you, not only for what you are but for what I am when I am with you." - Elizabeth Barrett Browning</li>
+          <li>"You are my forever and always." - Unknown</li>
+          <li>"Together is a wonderful place to be." - Unknown</li>
+          <li>"You are the best thing that’s ever been mine." - Taylor Swift</li>
         </ul>
         <button onclick="closeLoveQuotes()">Close</button>
       </div>
@@ -339,7 +339,11 @@
 
     function togglePopup(popupId) {
       const popup = document.getElementById(popupId);
-      popup.classList.add('active');
+      const isActive = popup.classList.contains('active');
+      closeAllPopups(); // Close all popups before opening a new one
+      if (!isActive) {
+        popup.classList.add('active');
+      }
     }
 
     function closePopup(popupId) {
@@ -347,9 +351,18 @@
       popup.classList.remove('active');
     }
 
+    function closeAllPopups() {
+      const popups = document.querySelectorAll('.popup');
+      popups.forEach(popup => popup.classList.remove('active'));
+    }
+
     function toggleLoveQuotes() {
       const loveQuotesPopup = document.getElementById('loveQuotesPopup');
-      loveQuotesPopup.classList.add('active');
+      const isActive = loveQuotesPopup.classList.contains('active');
+      closeAllPopups(); // Close all popups before opening a new one
+      if (!isActive) {
+        loveQuotesPopup.classList.add('active');
+      }
     }
 
     function closeLoveQuotes() {
